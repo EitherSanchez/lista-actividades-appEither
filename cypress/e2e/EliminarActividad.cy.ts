@@ -7,11 +7,12 @@ describe('Eliminar una Actvidad', () => {
     //cy.wait(10_000);
     //A wait to found the element cy.get('h1',{timeout: 1000})
     cy.validacionInicial();
+    cy.agregarActividad();
 
-//Agregar Actividad
-    cy.get(e2e.CAMPO_AGREGAR_ACTIVIDAD).type('Actividad de prueba');
-    cy.get(e2e.BOTON_AGREGAR).click();
+//Eliminar Actividad
 
-    cy.get('span').should('have.text','Actividad de prueba');
+cy.wait(2_000);
+cy.get(e2e.BOTON_ELIMINAR).click();
+cy.get('[data-cy="u3dd92"]').should('not.have.text','Actividad de prueba');
   })
 })

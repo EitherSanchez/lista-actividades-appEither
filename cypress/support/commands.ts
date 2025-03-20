@@ -5,7 +5,9 @@ import { e2e } from "./constantes";
 declare global {
     namespace Cypress{
     interface Chainable{
-        validacionInicial(): Chainable<Element>
+        validacionInicial(): Chainable<Element>,
+        agregarActividad(): Chainable<Element>,
+        EditarActividad(): Chainable<Element>
     }
 }
 }
@@ -56,3 +58,17 @@ Cypress.Commands.add('validacionInicial', () => {
     .should('be.visible')
     .should('has.css', 'background-color', 'rgb(40, 167, 69)')
 })
+
+Cypress.Commands.add('agregarActividad', () => {
+     cy.get(e2e.CAMPO_AGREGAR_ACTIVIDAD).type('Actividad de prueba');
+     cy.get(e2e.BOTON_AGREGAR).click();
+  })
+
+  Cypress.Commands.add('EditarActividad', () => {
+    cy.get(e2e.BOTON_EDITAR).click();
+    cy.get(e2e.CAMPO_EDITAR_ACTIVIDAD).clear();
+    cy.wait(2_000);
+    cy.get(e2e.CAMPO_EDITAR_ACTIVIDAD).type('This is an edited text')
+    cy.wait(2_000);
+    cy.get(e2e.BOTON_GUARDAR).click();
+ })
