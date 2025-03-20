@@ -9,8 +9,7 @@ describe('Agregar una Actvidad', () => {
     cy.validacionInicial();
 
 //Agregar Actividad
-    cy.get(e2e.CAMPO_AGREGAR_ACTIVIDAD).type('Actividad de prueba');
-    cy.get(e2e.BOTON_AGREGAR).click();
+    cy.agregarActividad();
 
     cy.get('span').should('have.text','Actividad de prueba');
   })
